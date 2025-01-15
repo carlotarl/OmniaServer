@@ -29,6 +29,7 @@ const logger = bunyan.createLogger({name: 'Proyecto Omnia'})
 // Le decimos los errores 404 del cliente y 500 del servidor
 
 app.use((req,res)=>{
+    console.log('req'   ,req)
     res.status(404).json({mensaje:'No se ha encontrado la ruta'})
 })
 
