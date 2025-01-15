@@ -22,15 +22,15 @@ const serviciosController = {
 
 
     newServicios(req, res) {
-
         let nombre = req.body.nombre;
         let descripcion = req.body.descripcion;
         let duracion = req.body.duracion;
         let precio = parseInt(req.body.precio);
+        let foto = "/"
 
-        let query = "INSERT INTO servicios(nombre,descripcion,duracion,precio) VALUES (?,?,?,?)";
+        let query = "INSERT INTO servicios(nombre,descripcion,duracion,precio,foto) VALUES (?,?,?,?,?)";
 
-        conexion.query(query, [nombre, descripcion, duracion, precio], (err, resultados, campos) => {
+        conexion.query(query, [nombre, descripcion, duracion, precio, foto], (err, resultados, campos) => {
             if (err) {
                 res.json({ mensaje: 'Error en la insercción' }).status(503)
             }
