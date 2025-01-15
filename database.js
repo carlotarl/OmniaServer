@@ -12,7 +12,7 @@ const conexion = mysql.createConnection({
     database: process.env.DB_DATABASE,
     port: process.env.PORT,
     debug: true,
-    connectTimeout: 10000,
+    connectTimeout: 20000,
 })
 
 // Hacemos la estructura try catch para poder parar los errores
