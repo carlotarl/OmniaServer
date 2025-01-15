@@ -42,3 +42,6 @@ const puerto = process.env.PORT || 3000;
 app.listen(puerto,()=>{
     logger.info('Servidor Levantado')
 })
+
+// Export the Express API
+module.exports = app;
