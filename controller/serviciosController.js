@@ -60,7 +60,7 @@ const serviciosController = {
     },
 
     editServiciosById(req, res) {
-        let id = req.body.id_servicio;
+        let id = req.body.id;
         let nombre = req.body.nombre;
         let descripcion = req.body.descripcion;
         let duracion = req.body.duracion;
