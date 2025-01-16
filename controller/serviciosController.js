@@ -7,9 +7,7 @@ const conexion = require('../database');
 const serviciosController = {
 
     getServicios(req, res) {
-
         let comando = 'SELECT * FROM servicios'
-
         conexion.query(comando, (err, resultados, campos) => {
 
             if (err) {
@@ -26,11 +24,10 @@ const serviciosController = {
         let descripcion = req.body.descripcion;
         let duracion = req.body.duracion;
         let precio = parseInt(req.body.precio);
-        let foto = "/"
 
-        let query = "INSERT INTO servicios(nombre,descripcion,duracion,precio,foto) VALUES (?,?,?,?,?)";
+        let query = "INSERT INTO servicios(nombre,descripcion,duracion,precio) VALUES (?,?,?,?)";
 
-        conexion.query(query, [nombre, descripcion, duracion, precio, foto], (err, resultados, campos) => {
+        conexion.query(query, [nombre, descripcion, duracion, precio], (err, resultados, campos) => {
             if (err) {
                 res.json({ mensaje: 'Error en la insercción' }).status(503)
             }
@@ -39,16 +36,14 @@ const serviciosController = {
     },
 
     deleteServicios(req, res) {
-
         let id = req.query.id;
 
-        let comando = "SELECT FROM servicios WHERE id = ?";
-
+        let comando = "DELETE FROM servicios WHERE id = ?";
         conexion.query(comando, [id], (err, resultados, campos) => {
             if (err) {
-                res.json({ mensaje: 'Error en el borrado' }).status(503)
+                res.status(503).json({ mensaje: 'Error en el borrado' })
             }
-            res.json({ mensaje: 'Ok' }).status(200)
+            res.status(200).json({ mensaje: 'Ok' })
         })
     },
 
@@ -65,14 +60,13 @@ const serviciosController = {
     },
 
     editServiciosById(req, res) {
-
         let id = req.body.id_servicio;
         let nombre = req.body.nombre;
         let descripcion = req.body.descripcion;
         let duracion = req.body.duracion;
         let precio = req.body.precio;
 
-        let comando = "UPDATE servicios SET nombre = ?, descripcion = ?, duracion = ?, precio = ? WHERE id_servicio = ?"
+        let comando = "UPDATE servicios SET nombre = ?, descripcion = ?, duracion = ?, precio = ? WHERE id = ?"
 
         conexion.query(comando, [nombre, descripcion, duracion, precio, id], (err, resultados, campo) => {
 
