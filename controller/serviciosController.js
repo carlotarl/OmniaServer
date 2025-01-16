@@ -51,7 +51,7 @@ const serviciosController = {
 
         let id = req.query.id;
 
-        let comando = "SELECT * FROM servicios WHERE id_servicio = ?";
+        let comando = "SELECT * FROM servicios WHERE id = ?";
 
         conexion.query(comando, [id], (err, resultados, campo) => {
             res.json(resultados[0]).status(200);
@@ -71,9 +71,9 @@ const serviciosController = {
         conexion.query(comando, [nombre, descripcion, duracion, precio, id], (err, resultados, campo) => {
 
             if (err) {
-                res.json({ mensaje: 'No se ha podido actualizar' }).status(503)
+                res.status(503).json({ mensaje: 'No se ha podido actualizar' })
             }
-            res.json({ mensaje: 'Ok' }).status(200)
+            res.status(200).json({ mensaje: 'Ok' })
 
         })
 
